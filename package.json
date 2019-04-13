@@ -1,0 +1,19 @@
+{
+  "name": "node-gems",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fardeen9983/Node-gems.git"
+  },
+  "author": "Fardeen Khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fardeen9983/Node-gems/issues"
+  },
+  "homepage": "https://github.com/fardeen9983/Node-gems#readme"
+}
