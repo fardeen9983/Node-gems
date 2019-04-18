@@ -70,3 +70,79 @@ fs.unlink("example2.txt",(err)=>{
     else 
         console.log("File deleted successfully");
 });
+
+/**
+ * Create a directory
+ * method : mkdir
+ * arg0 : String -> Directory Name
+ * arg1 : Callback(error) -> Handle errors
+ */
+fs.mkdir("tutorial",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else 
+        console.log("Directory created successfully");
+});
+
+/**
+ * Delete a directory
+ * method : rmdir
+ * arg0 : String -> Directory Name
+ * arg1 : Callback(error) -> Handle errors
+ */
+fs.rmdir("tutorial",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else 
+        console.log("Directory deleted successfully");
+});
+
+/**
+ * Create a file in a directory
+ * method : mkdir | writeFile
+ */
+fs.mkdir("tutorial",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else{
+        fs.writeFile('./tutorial/example.txt',"Hey there",(err)=>{
+            if(err)
+                console.log(err);
+            else 
+                console.log("File created successfully");
+        });
+    } 
+});
+
+/**
+ * Get all the files from a directory and delete them
+ * method : readdir| unlink
+ * arg0 : String -> Directory Path
+ * arg1 : Callback(err,files) -> Handle any errors and get list of file names
+ */
+fs.readdir("tutorial",(err,files)=>{
+    if(err)
+        console.log(err);
+    else {
+        var e = false;
+        files.forEach(element => {
+            for(let file of files){
+                fs.unlink("./tutorial/" + file,(err)=>{
+                    if(err){
+                        console.log(err);
+                        e = true;
+                        break;
+                    }
+                });
+            }
+        });
+        if(!e){
+            fs.rmdir("tutorial",(err)=>{
+                if(err)
+                    console.log(err);
+                else 
+                    console.log("Directory successfully deleted");
+            });
+        }
+    }
+});
