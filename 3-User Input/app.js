@@ -18,16 +18,28 @@ let sum = n1+n2;
  * arg1 : Callback to handle user input, provides the string user types as arg
 */
 rl.question(`What is the value of ${n1} + ${n2} ?\n`,
-(input) =>{
-    if(input.trim() == sum){
-        console.log("Correct answer");
-    } else {
-        console.log("Wrong answer !!!");
+    (input) =>{
+        if(input.trim() == sum){
+            //Close the ReadLine interface (so that we can terminate app)
+            rl.close();
+        } else {
+            // Re-prompt the user to enter correct answer
+            rl.setPrompt("Wrong answer !!!\nTry again ..\n");
+            rl.prompt();
+            //Listen for user input. This will be executed for each line of input user types
+            rl.on('line',(input)=>{
+                if(input.trim() == sum)
+                    rl.close();
+                else {
+                    rl.setPrompt(`Your answer ${input} is incorrect!! Try again\n`);
+                    rl.prompt();
+                }
+            });
+        }
     }
-    //Close the ReadLine interface (so that we can terminate app)
-    rl.close();
-}
 );
 
-
-
+//Add a listener for close event on the ReadLine interface
+rl.on('close',()=>{
+     console.log("Correct answer\nExiting....");
+});
