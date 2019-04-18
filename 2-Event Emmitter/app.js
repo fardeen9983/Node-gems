@@ -22,3 +22,33 @@ eventEmitter.on("sum",(n1,n2)=>{
 });
 //Emit a 'sum' event
 eventEmitter.emit("sum",2,3);
+
+/**
+ * Create Custom EventEmiiter : Extend EventEmiiter 
+ * constructor arg : name => Set the name of the EventEmiiter
+ * name getter : return its name
+ */
+class Person extends EventEmiiter{
+    constructor(name){
+        super();
+        this._name = name;
+    }
+
+    get name(){
+        return this._name;
+    }
+}
+
+//Create Person objects
+let person = new Person("Dummy");
+let person2 = new Person("Dummy2");
+//Add a listener to Person objects
+person.on("name",()=>{
+    console.log("Person 1 : "+person._name);
+});
+person2.on("name",()=>{
+    console.log("Person 2 : " + person2._name);
+})
+//Emit Person event : name
+person.emit("name");
+person2.emit("name");
