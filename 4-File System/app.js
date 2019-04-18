@@ -30,3 +30,43 @@ fs.readFile('example.txt',"UTF-8",(err,file)=>{
         console.log(file);
 });
  
+/**
+ * Rename a file
+ * method : rename
+ * arg0 : String -> Old Path
+ * arg1 : String -> New Path
+ * arg2 : Callback(error) -> Handle errors
+ */
+fs.rename("example.txt","example2.txt",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else 
+        console.log("File renamed successfully");
+});
+
+/**
+ * Append content to the end of file
+ * method : appendFile
+ * arg0 : String -> File path
+ * arg1 : String -> Content to be appended
+ * arg2 : Callback(error) -> Handle errors
+ */
+fs.appendFile("example2.txt","\nWatson",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else 
+        console.log("Append successful");
+});
+
+/**
+ * Delete a file
+ * method : unlink
+ * arg0 : String -> File path
+ * arg1 : Callback(error) -> Handle errors
+ */
+fs.unlink("example2.txt",(err)=>{
+    if(err)
+        console.log("Error : " + err );
+    else 
+        console.log("File deleted successfully");
+});
