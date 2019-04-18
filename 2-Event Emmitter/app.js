@@ -49,6 +49,7 @@ person.on("name",()=>{
 person2.on("name",()=>{
     console.log("Person 2 : " + person2._name);
 })
-//Emit Person event : name
+//Emit Person event : name 
+//Done so synchronously in order of events being emitted
 person.emit("name");
 person2.emit("name");
