@@ -146,3 +146,35 @@ fs.readdir("tutorial",(err,files)=>{
         }
     }
 });
+
+
+/*
+Working with Streams : Readable and Writeable  (requires fs)
+Streams are better used when handling large files as a single buffer may not hold all the content at once.
+So it is better to operate on files in small chunks of data over multiple buffer i/o operations
+*/
+
+/**
+ * Create ReadStream object (extends EventEmitter) 
+ * Reads data in chunks rather than in one go
+ * method : createReadStream
+ * arg0 : String -> File Path
+ * arg1 : String -> Encoding
+ */
+let readStream = fs.createReadStream("./example.txt","utf8");
+
+/**
+ * Create WriteStream Object 
+ * Writes data in chunks using smaller buffers
+ * method : createWriteStream
+ * arg0 : String : File path
+ */
+let writeStream = fs.createWriteStream('./example2.txt');
+
+//Read content from one file and copy to another
+readStream.on("data",(chunk)=>{
+    writeStream.write(chunk);
+});
+
+//Directly do the above operation using pipe
+readStream.pipe(writeStream);
