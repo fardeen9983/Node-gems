@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head><title>EJS Template</title></head>
+    <body>
+        <!--We can access the data passed on the render method in the get route from express app -->
+        <center><h1>Your Searched for : <%= data.userQuery%></h1></center> 
+        <% if(data.loggedin) { %>
+            <h2>You are logged in as <%= data.username %> </h2>
+            <ul>
+            <% data.searchResults.forEach( result => { %>
+                <li><%= result %></li>
+            <% }); %>
+            </ul>
+        <% } %>
+    </body>
+</html>
