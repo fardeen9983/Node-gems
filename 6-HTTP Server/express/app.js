@@ -4,6 +4,8 @@ const express = require('express');
 const path = require('path');
 //Get the body-parser module to parse form-data of request body
 const body_parser = require('body-parser'); 
+//Joi module used for input validation
+const joi = require('joi');
 
 //express module returns an object with multiple functionalities
 const app = express();
@@ -79,5 +81,25 @@ app.get("/login",(req,res)=>{
 */
 app.post("/login",(req,res)=>{
     console.log(req.body);
-    res.send("Successfully login");
+    //To validate the input to be of the proper format, we create a Joi schema object defining the constraints on the fields we recieve
+    const schema = joi.object().keys({
+        email : joi.string().trim().email().required(),
+        password : joi.string().trim().required().min(5).max(10)
+    });
+    
+    /**Validate the fields
+     * method : joi.validate
+     * arg0 : Object - The object to be validated inthis case it is the request body
+     * arg1 : ObjectSchema - The blueprint schema to be used for validation
+     * arg3 : Callback(err,result) - Handle errors in validation or get the result
+     */
+    joi.validate(req.body,schema,(err,result)=>{
+        if(err)
+            console.log(err);
+        else {
+            console.log(result);
+            res.send("Successfully login");
+        }
+    });
+    
 });
