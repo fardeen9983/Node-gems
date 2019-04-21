@@ -1,6 +1,7 @@
 # Node-gems
 --- 
 In the console pointing to the root folder of your node project type 'npm init' to get the package.json file, which will hold all the dependency info for packages, author, gir repo,etc.
+If ypu type 'npm init --yes' all configurations are set to default.
 ---
 To integrate the packages stated in your package.json file in the project you are working currently wih type 'npm install' in the console.
 ---
