@@ -25,5 +25,4 @@ writeStream = fs.createWriteStream("final.txt");
 //Extract data from *.gz file into uncompressed format
 readStream.pipe(gunzip).pipe(writeStream);
 // //Display the uncompressed content
-// readStream = fs.createReadStream("final.txt","utf8");
-// readStream.on("data",(chunk)=>{console.log(chunk);});
+ dStream.on("data",(chunk)=>{console.log(chunk);});
